@@ -1,0 +1,26 @@
+﻿
+<h1>AppointmentsAndTheirDoctors_UsingModel</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>aLocation</th>
+            <th>aDescription</th>
+            <th>dName</th>
+            <th>dSpecialization</th>
+            <th>dLicenseNumber</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var i in Model)
+        {
+            <tr>
+                <td>@i.aLocation</td>
+                <td>@i.aDescription</td>
+                <td>@i.dName</td>
+                <td>@i.dSpecialization</td>
+                <td>@i.dLicenseNumber</td>
+            </tr>
+        }
+    </tbody>
+</table>

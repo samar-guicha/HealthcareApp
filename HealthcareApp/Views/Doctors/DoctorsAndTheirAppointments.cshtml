@@ -1,0 +1,54 @@
+﻿@model IEnumerable<HealthcareApp.Models.Health.Doctor>
+
+@{
+    ViewData["Title"] = "DoctorsAndTheirAppointments";
+}
+
+<h1>DoctorsAndTheirAppointments</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Specialization )
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Appointments)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Specialization )
+                </td>
+                <td>
+                    @foreach (var m in item.Appointments)
+                    {
+                        @Html.DisplayFor(modelItem => m.Location)
+                        @Html.DisplayFor(modelItem => m.Description)
+
+                        <br />
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

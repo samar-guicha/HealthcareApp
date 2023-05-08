@@ -1,0 +1,124 @@
+﻿@model IEnumerable<HealthcareApp.Models.Health.Appointment>
+
+@{
+    ViewData["Title"] = "List Appointments";
+}
+<style>
+    body {
+        background-color: blue;
+        color: white;
+    }
+
+    h1 {
+        color: black;
+    }
+
+    a.btn {
+        display: inline-block;
+        padding: 8px 16px;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+    a.btn-green {
+        background-color: green;
+        color: white;
+    }
+
+        a.btn-green:hover {
+            background-color: darkgreen;
+        }
+
+    a.btn-red {
+        background-color: red;
+        color: white;
+    }
+
+        a.btn-red:hover {
+            background-color: darkred;
+        }
+
+
+    a.btn-blue {
+        background-color: blue;
+        color: white;
+    }
+
+        a.btn-blue:hover {
+            background-color: darkblue;
+        }
+
+    a.btn-gray {
+        background-color: darkgray;
+        color: white;
+    }
+
+    a.btn-gary:hover {
+        background-color: dimgray;
+    }
+
+    a.btn-orange {
+        background-color: orange;
+        color: white;
+    }
+
+        a.btn-orange:hover {
+            background-color: darkorange;
+        }
+
+    .table {
+        background-color: white;
+        color: black;
+    }
+</style>
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-green">Create New</a>
+</p>
+<p>
+    <a asp-action="SearchByLocation" class="btn btn-blue">Search by Location</a>
+</p>
+<p>
+    <a asp-action="AppointmentsAndTheirDoctors" class="btn btn-blue"> Appointments and their doctors</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+               Doctors
+            </th>
+            <th>
+                Actions
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdDoctorNavigation.Name)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-orange">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-green">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-red">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
